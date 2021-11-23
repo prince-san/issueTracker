@@ -1,0 +1,3 @@
+INSERT INTO status (id, name) VALUES (1001, 'open');
+INSERT INTO issue (id, name, author, description, date, status_id) VALUES (2001, 'red sus', 'yellow', 'red faking tasks', parsedatetime('2021-11-23 18:47', 'yyyy-MM-dd hh:mm'), 1001);
+INSERT INTO issue (id, name, author, description, date, status_id) VALUES (2002, 'blue sus', 'yellow', 'blue killed green tasks', parsedatetime('2021-11-23 18:47', 'yyyy-MM-dd hh:mm'), 1001);

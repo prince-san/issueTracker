@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All issues</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'All issues here'"/>
+<p/>
+<tr th:each="issue : ${issues}">
+    <td><p th:text="'Issue: ' + ${issue.name} + ' ' + ${issue.author} + ' ' + ${issue.status.name} + ' ' + ${issue.date}"/></td>
+</tr>
+</body>
+</html>
