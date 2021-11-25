@@ -1,14 +1,25 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>All issues</title>
+    <title>Issue Tracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        table {
+            border-spacing: 15px;
+        }
+        body {
+            font-family: 'Calibri';
+        }
+    </style>
 </head>
 <body>
-<p th:text="'All issues here'"/>
-<p/>
+<p style="font-weight: bold">Issue tracker</p>
+<table>
 <tr th:each="issue : ${issues}">
-    <td><p th:text="'Issue: ' + ${issue.name} + ' ' + ${issue.author} + ' ' + ${issue.status.name} + ' ' + ${issue.date}"/></td>
+    <td><a th:href = "@{~/issue/get(id=${issue.id})}" th:text="${issue.name}"></a></td>
+    <td th:text="${issue.status}"></td>
+    <td th:text="${#dates.format(issue.date, 'dd/MM/yyyy')}"></td>
 </tr>
+</table>
 </body>
 </html>

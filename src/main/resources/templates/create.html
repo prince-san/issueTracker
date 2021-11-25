@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Issue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        table {
+            border-spacing: 15px;
+        }
+        body {
+            font-family: 'Calibri';
+        }
+    </style>
+</head>
+<body>
+<p style="font-weight: bold">Create issue</p>
+<form action="#" th:action="@{/issue/create}" th:object="${createIssueDTO}" method="post">
+    <p>Name <input required maxlength="63" type="text" th:field="*{name}"/></p>
+    <p>Author <input required maxlength="63" type="text" th:field="*{author}"/></p>
+    <p>Description <input required maxlength="255" type="text" th:field="*{description}"/></p>
+    <input type="submit" value="Save"/>
+    <input type="reset" value="Cancel">
+</form>
+</body>
+</html>

@@ -1,11 +1,58 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${issue.name}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        table {
+            border-spacing: 15px 0px;
+        }
+        body {
+            font-family: 'Calibri';
+        }
+    </style>
 </head>
 <body>
-<p th:text="'Issue: ' + ${name}"/>
-<p th:text="'Description: ' + ${description}"/>
+<p style="font-weight: bold" th:text="${issue.name}"></p>
+<table>
+    <tr>
+        <td style="font-weight: bold">Status</td>
+        <td th:text="${issue.status}"></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Start date</td>
+        <td th:text="${#dates.format(issue.date, 'dd/MM/yyyy hh:mm')}"></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Author</td>
+        <td th:text="${issue.author}"></td>
+    </tr>
+</table>
+<p style="position: relative; left: 15px">
+    <span style="font-weight: bold">Description</span>
+    <br>
+    <span th:text="${issue.description}"></span>
+</p>
+<span style="font-weight: bold; position: relative; left: 15px">Comments:</span>
+<table>
+    <tr th:each="comment : ${issue.comments}">
+        <td>
+            <div th:text="'Updated by ' + ${comment.author} + ' ' + ${#dates.format(comment.date, 'dd/MM/yyyy hh:mm')} + ':'"></div>
+            <div style="font-style: italic; position: relative; left: 15px"
+                 th:text="'Status changed to ' + ${comment.statusDTO.name}"></div>
+            <div th:text="${comment.text}"></div>
+        </td>
+    </tr>
+</table>
+<p>Add comment:</p>
+<form action="#" th:action="@{/comment/create(id=${issue.id})}" th:object="${createCommentDTO}" method="post">
+    <p>Status <select th:field="*{status_id}">
+        <option th:each="status : ${statuses}" th:value="${status.id}" th:text="${status.name}"></option>
+    </select></p>
+    <p>Author <input required maxlength="63" type="text" th:field="*{author}"/></p>
+    <p>Text</p>
+    <p><input required maxlength="255" type="text" th:field="*{text}"/></p>
+    <input type="submit" value="Add"/>
+</form>
 </body>
 </html>

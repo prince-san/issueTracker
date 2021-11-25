@@ -7,12 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MappedTypes({Issue.class})
-@MapperScan("edu.employment.issueTracker.mapper")
+@MapperScan("edu.employment.issueTracker.model.mapper")
 @SpringBootApplication
-public class IssueTrackerApplication {
+public class IssueTrackerApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(IssueTrackerApplication.class, args);
 	}
-
 }

@@ -12,4 +12,5 @@ public class Comment {
     private String text;
     private Date date;
     private Status status;
+    private Issue issue;
 }
